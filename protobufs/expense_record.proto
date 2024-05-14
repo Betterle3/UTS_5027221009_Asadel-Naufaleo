@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package ExpenseTracker;
+
+message Expense {
+  string id = 1;
+  string category = 2;
+  string description = 3;
+  double amount = 4;
+  string date = 5;
+}
+
+service ExpenseTracker {
+  rpc GetAllExpenses(GetAllExpensesRequest) returns (GetAllExpensesResponse);
+  rpc CreateExpense(CreateExpenseRequest) returns (CreateExpenseResponse);
+  rpc UpdateExpense(UpdateExpenseRequest) returns (UpdateExpenseResponse);
+  rpc DeleteExpense(DeleteExpenseRequest) returns (DeleteExpenseResponse);
+}
+
+message GetAllExpensesRequest {
+}
+
+message GetAllExpensesResponse {
+  repeated Expense expenses = 1;
+}
+
+message CreateExpenseRequest {
+  Expense expense = 1;
+}
+
+message CreateExpenseResponse {
+  Expense expense = 1;
+}
+
+message UpdateExpenseRequest {
+  string id = 1;
+  Expense expense = 2;
+}
+
+message UpdateExpenseResponse {
+  Expense expense = 1;
+}
+
+message DeleteExpenseRequest {
+  string id = 1;
+}
+
+message DeleteExpenseResponse {
+  string message = 1;
+}
